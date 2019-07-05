@@ -28,6 +28,11 @@ public class ProductController {
     private CategoryService categoryService;
     @GetMapping("/list")
     public ResultVO<ProductVO> list(){
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         //从商品服务取得所有已上架的商品
         List<ProductInfo> productInfoList = productService.findUpAll();
         /*拉姆达表达式*/
@@ -63,11 +68,11 @@ public class ProductController {
     @PostMapping("/listForOrder")
     public List<ProductInfoOutput> listForOrder(@RequestBody List<String> productList){
         log.info("商品查询服务开始");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e){
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e){
+//            e.printStackTrace();
+//        }
         return productService.findList(productList);
     }
 
